@@ -9,7 +9,7 @@ $('#qd').click(function (e) {
   console.log("123");
   $('.ques').show();
   $.ajax({
-    url: 'https://wx.idsbllp.cn/gavagame/qiandao/question',
+    url: 'https://qiandao.redrock.team/question',
     type: 'POST',
     data: {
       openid: window.document.location.search.replace('?openid=', '').split('&')[0]
@@ -37,7 +37,7 @@ $('#qd').click(function (e) {
 $('.ans').click(function (e) {
   console.log(e);
   $.ajax({
-    url: 'https://wx.idsbllp.cn/gavagame/qiandao/sign',
+    url: 'https://qiandao.redrock.team/sign',
     type: 'POST',
     heade : {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -78,7 +78,7 @@ $('#zjzl').click(function (e) {
 // 排行榜
 $('#phb').click(function (e) {
   $.ajax({
-    url: 'https://wx.idsbllp.cn/gavagame/qiandao/rank',
+    url: 'https://qiandao.redrock.team/rank',
     type: 'POST',
     data: {
       openid: window.document.location.search.replace('?openid=', '').split('&')[0]
