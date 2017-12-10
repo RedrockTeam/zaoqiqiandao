@@ -1,0 +1,144 @@
+[$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')].forEach(el => el.hide())
+
+
+
+
+$('#qd').click(function(e) {
+  $('.main').hide()
+  console.log("123");
+  $('.ques').show()
+  $.ajax({
+    url: 'https://wx.idsbllp.cn/gavagame/qiandao/question',
+    type: 'POST',
+    data: {
+      openid: window.document.location.search.replace('?openid=', '')
+    },
+    header: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    }
+  })
+  .done(data => {
+    console.log(data);
+    if (data.status == 200) {
+      $('.q-m').html(data.data.question)
+      let ans = data.data.selection
+                    .split(/\ +/)
+                    .map(el => el.split('.')[1])
+      $('#da-a').html(ans[0])
+      $('#da-b').html(ans[1])
+      $('#da-c').html(ans[2])
+      $('#da-d').html(ans[3])
+    }
+  })
+})
+
+
+$('.ans').click(function(e) {
+  console.log(e);
+  $.ajax({
+    url: 'https://wx.idsbllp.cn/gavagame/qiandao/sign',
+    type: 'POST',
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data: {
+      answer: e.target.id[3].toUpperCase(),
+      openid: window.document.location.search.replace('?openid=', '')
+    },
+  })
+  .done(function(data) {
+    console.log(data);
+    // 答案错误
+    if (data.status == 401) {
+      $('.cover').show()
+      $('#hdcw').show()
+    }
+    // 签到成功
+    if (data.status == 200 || data.status == 201) {
+      $('.cover').show()
+      $('#phb').click()
+    }
+  })
+  
+});
+
+// 退出
+$('#xczl').click(function(e) {
+  [$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')].forEach(el => el.hide())
+  $('.main').show()
+})
+
+$('#zjzl').click(function(e) {
+  $('.cover').hide()
+  $('#hdcw').hide()
+  $('#qd').click()
+})
+
+
+
+
+// 排行榜
+$('#phb').click(function(e) {
+  $.ajax({
+    url: 'https://wx.idsbllp.cn/gavagame/qiandao/rank',
+    type: 'POST',
+    data: {
+      openid: window.document.location.search.replace('?openid=', '')
+    },
+    header: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    }
+  })
+  .done(function(data) {
+    console.log(data);
+    $('.p-mc').html(data.data.userRank)
+    data.data.topTen.forEach((el, index) => {
+      $('.p-p').html($('.p-p').html() + '<div class="pp-im"><div class="ppi-ava"></div><div class="ppi-name"></div><div class="ppi-stand"></div></div>');
+      $('.ppi-ava')
+        .eq(index)
+        .css('background-image', 'url(' + el.headImgAddr + ')')
+      $('.ppi-name')
+        .eq(index)
+        .html(el.nickName)
+      $('.ppi-stand')
+        .eq(index)
+        .html(el.rankId)
+
+      $('.ppi-stand')
+        .eq(0)
+        .css('background-image', 'url(./img/p1.png')
+        .html(' ')
+        .end()
+        .eq(1)
+        .css('background-image', 'url(./img/p2.png')
+        .html(' ')
+        .end()
+        .eq(2)
+        .css('background-image', 'url(./img/p3.png')
+        .html(' ')
+    })
+  })
+  
+
+  var list = [$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')]
+  list.forEach(el => el.hide())
+  $('.phb').show()
+  $('.main').hide()
+  $('.ppi-stand')
+    .eq(0)
+    .css('background-image', 'url(./img/p1.png')
+    .html(' ')
+    .end()
+    .eq(1)
+    .css('background-image', 'url(./img/p2.png')
+    .html(' ')
+    .end()
+    .eq(2)
+    .css('background-image', 'url(./img/p3.png')
+    .html(' ')
+})
+
+
+
+
+
