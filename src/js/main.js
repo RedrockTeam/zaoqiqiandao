@@ -12,9 +12,11 @@ $('#qd').click(function (e) {
     url: 'https://wx.idsbllp.cn/gavagame/qiandao/question',
     type: 'POST',
     data: {
-      openid: window.document.location.search.replace('?openid=', '')
+      openid: window.document.location.search.replace('?openid=', '').split('&')[0]
     },
-    header: {
+    header: {    
+
+
       "Content-Type": "application/x-www-form-urlencoded"
     }
   }).done(function (data) {
@@ -37,12 +39,12 @@ $('.ans').click(function (e) {
   $.ajax({
     url: 'https://wx.idsbllp.cn/gavagame/qiandao/sign',
     type: 'POST',
-    header: {
+    heade : {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     data: {
       answer: e.target.id[3].toUpperCase(),
-      openid: window.document.location.search.replace('?openid=', '')
+      openid: window.document.location.search.replace('?openid=', '').split('&')[0]
     }
   }).done(function (data) {
     console.log(data);
@@ -79,7 +81,7 @@ $('#phb').click(function (e) {
     url: 'https://wx.idsbllp.cn/gavagame/qiandao/rank',
     type: 'POST',
     data: {
-      openid: window.document.location.search.replace('?openid=', '')
+      openid: window.document.location.search.replace('?openid=', '').split('&')[0]
     },
     header: {
       "Content-Type": "application/x-www-form-urlencoded"
