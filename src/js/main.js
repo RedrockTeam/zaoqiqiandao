@@ -81,7 +81,7 @@ $('#phb').click(function (e) {
     url: 'https://qiandao.redrock.team/rank',
     type: 'POST',
     data: {
-      openid: window.document.location.search.replace('?openid=', '').split('&')[0]
+      openid: window.document.location.search.replace(/\?openid=/, '').split('&')[0]
     },
     header: {
       "Content-Type": "application/x-www-form-urlencoded"
