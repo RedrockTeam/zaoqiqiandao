@@ -15,8 +15,6 @@ $('#qd').click(function (e) {
       openid: window.document.location.search.replace('?openid=', '').split('&')[0]
     },
     header: {    
-
-
       "Content-Type": "application/x-www-form-urlencoded"
     }
   }).done(function (data) {
@@ -30,6 +28,9 @@ $('#qd').click(function (e) {
       $('#da-b').html(ans[1]);
       $('#da-c').html(ans[2]);
       $('#da-d').html(ans[3]);
+    }
+    else if (data.status == 301 || data.status == 302) {
+      showNotTime();
     }
   });
 });
@@ -88,7 +89,7 @@ $('#phb').click(function (e) {
     }
   }).done(function (data) {
     console.log(data);
-    $('.p-mc').html(data.data.userRank);
+    $('.p-mc').html(data.data.userRank > 0 ? data.data.userRank : 1);
     data.data.topTen.forEach(function (el, index) {
       $('.p-p').html($('.p-p').html() + '<div class="pp-im"><div class="ppi-ava"></div><div class="ppi-name"></div><div class="ppi-stand"></div></div>');
       $('.ppi-ava').eq(index).css('background-image', 'url(' + el.headImgAddr + ')');
@@ -107,3 +108,18 @@ $('#phb').click(function (e) {
   $('.main').hide();
   $('.ppi-stand').eq(0).css('background-image', 'url(./img/p1.png').html(' ').end().eq(1).css('background-image', 'url(./img/p2.png').html(' ').end().eq(2).css('background-image', 'url(./img/p3.png').html(' ');
 });
+
+
+$('#fh').click(function(e) {
+  window.location.reload();
+})
+
+
+
+function showNotTime () {
+  [$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques'), $('.main')].forEach(function (el) {
+    return el.hide();
+  });
+  $('.cover').show();
+  $('#qdsb').show();
+}
