@@ -108,7 +108,6 @@ $('#phb').click(function (e) {
   $('.main').hide();
   $('.ppi-stand').eq(0).css('background-image', 'url(./img/p1.png').html(' ').end().eq(1).css('background-image', 'url(./img/p2.png').html(' ').end().eq(2).css('background-image', 'url(./img/p3.png').html(' ');
 });
-<<<<<<< HEAD
 
 
 $('#fh').click(function(e) {
@@ -124,5 +123,3 @@ function showNotTime () {
   $('.cover').show();
   $('#qdsb').show();
 }
-=======
->>>>>>> 7a7d6e841ec3e0babb112108ea0e7a1e2ccb9b97
