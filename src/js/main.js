@@ -9,7 +9,7 @@ $('#qd').click(function (e) {
   console.log("123");
   $('.ques').show();
   $.ajax({
-    url: 'https://qiandao.redrock.team/question',
+    url: '//qiandao.redrock.team/question',
     type: 'POST',
     data: {
       openid: window.document.location.search.replace('?openid=', '').split('&')[0]
@@ -38,7 +38,7 @@ $('#qd').click(function (e) {
 $('.ans').click(function (e) {
   console.log(e);
   $.ajax({
-    url: 'https://qiandao.redrock.team/sign',
+    url: '//qiandao.redrock.team/sign',
     type: 'POST',
     heade : {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -79,7 +79,7 @@ $('#zjzl').click(function (e) {
 // 排行榜
 $('#phb').click(function (e) {
   $.ajax({
-    url: 'https://qiandao.redrock.team/rank',
+    url: '//qiandao.redrock.team/rank',
     type: 'POST',
     data: {
       openid: window.document.location.search.replace(/\?openid=/, '').split('&')[0]
@@ -108,6 +108,7 @@ $('#phb').click(function (e) {
   $('.main').hide();
   $('.ppi-stand').eq(0).css('background-image', 'url(./img/p1.png').html(' ').end().eq(1).css('background-image', 'url(./img/p2.png').html(' ').end().eq(2).css('background-image', 'url(./img/p3.png').html(' ');
 });
+<<<<<<< HEAD
 
 
 $('#fh').click(function(e) {
@@ -123,3 +124,5 @@ function showNotTime () {
   $('.cover').show();
   $('#qdsb').show();
 }
+=======
+>>>>>>> 7a7d6e841ec3e0babb112108ea0e7a1e2ccb9b97
