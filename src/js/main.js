@@ -1,12 +1,13 @@
-[$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')].forEach(el => el.hide())
+'use strict';
 
+[$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')].forEach(function (el) {
+  return el.hide();
+});
 
-
-
-$('#qd').click(function(e) {
-  $('.main').hide()
+$('#qd').click(function (e) {
+  $('.main').hide();
   console.log("123");
-  $('.ques').show()
+  $('.ques').show();
   $.ajax({
     url: 'https://wx.idsbllp.cn/gavagame/qiandao/question',
     type: 'POST',
@@ -16,24 +17,22 @@ $('#qd').click(function(e) {
     header: {
       "Content-Type": "application/x-www-form-urlencoded"
     }
-  })
-  .done(data => {
+  }).done(function (data) {
     console.log(data);
     if (data.status == 200) {
-      $('.q-m').html(data.data.question)
-      let ans = data.data.selection
-                    .split(/\ +/)
-                    .map(el => el.split('.')[1])
-      $('#da-a').html(ans[0])
-      $('#da-b').html(ans[1])
-      $('#da-c').html(ans[2])
-      $('#da-d').html(ans[3])
+      $('.q-m').html(data.data.question);
+      var ans = data.data.selection.split(/\ +/).map(function (el) {
+        return el.split('.')[1];
+      });
+      $('#da-a').html(ans[0]);
+      $('#da-b').html(ans[1]);
+      $('#da-c').html(ans[2]);
+      $('#da-d').html(ans[3]);
     }
-  })
-})
+  });
+});
 
-
-$('.ans').click(function(e) {
+$('.ans').click(function (e) {
   console.log(e);
   $.ajax({
     url: 'https://wx.idsbllp.cn/gavagame/qiandao/sign',
@@ -44,41 +43,38 @@ $('.ans').click(function(e) {
     data: {
       answer: e.target.id[3].toUpperCase(),
       openid: window.document.location.search.replace('?openid=', '')
-    },
-  })
-  .done(function(data) {
+    }
+  }).done(function (data) {
     console.log(data);
     // 答案错误
     if (data.status == 401) {
-      $('.cover').show()
-      $('#hdcw').show()
+      $('.cover').show();
+      $('#hdcw').show();
     }
     // 签到成功
     if (data.status == 200 || data.status == 201) {
-      $('.cover').show()
-      $('#phb').click()
+      $('.cover').show();
+      $('#phb').click();
     }
-  })
-  
+  });
 });
 
 // 退出
-$('#xczl').click(function(e) {
-  [$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')].forEach(el => el.hide())
-  $('.main').show()
-})
+$('#xczl').click(function (e) {
+  [$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')].forEach(function (el) {
+    return el.hide();
+  });
+  $('.main').show();
+});
 
-$('#zjzl').click(function(e) {
-  $('.cover').hide()
-  $('#hdcw').hide()
-  $('#qd').click()
-})
-
-
-
+$('#zjzl').click(function (e) {
+  $('.cover').hide();
+  $('#hdcw').hide();
+  $('#qd').click();
+});
 
 // 排行榜
-$('#phb').click(function(e) {
+$('#phb').click(function (e) {
   $.ajax({
     url: 'https://wx.idsbllp.cn/gavagame/qiandao/rank',
     type: 'POST',
@@ -88,57 +84,24 @@ $('#phb').click(function(e) {
     header: {
       "Content-Type": "application/x-www-form-urlencoded"
     }
-  })
-  .done(function(data) {
+  }).done(function (data) {
     console.log(data);
-    $('.p-mc').html(data.data.userRank)
-    data.data.topTen.forEach((el, index) => {
+    $('.p-mc').html(data.data.userRank);
+    data.data.topTen.forEach(function (el, index) {
       $('.p-p').html($('.p-p').html() + '<div class="pp-im"><div class="ppi-ava"></div><div class="ppi-name"></div><div class="ppi-stand"></div></div>');
-      $('.ppi-ava')
-        .eq(index)
-        .css('background-image', 'url(' + el.headImgAddr + ')')
-      $('.ppi-name')
-        .eq(index)
-        .html(el.nickName)
-      $('.ppi-stand')
-        .eq(index)
-        .html(el.rankId)
+      $('.ppi-ava').eq(index).css('background-image', 'url(' + el.headImgAddr + ')');
+      $('.ppi-name').eq(index).html(el.nickName);
+      $('.ppi-stand').eq(index).html(el.rankId);
 
-      $('.ppi-stand')
-        .eq(0)
-        .css('background-image', 'url(./img/p1.png')
-        .html(' ')
-        .end()
-        .eq(1)
-        .css('background-image', 'url(./img/p2.png')
-        .html(' ')
-        .end()
-        .eq(2)
-        .css('background-image', 'url(./img/p3.png')
-        .html(' ')
-    })
-  })
-  
+      $('.ppi-stand').eq(0).css('background-image', 'url(./img/p1.png').html(' ').end().eq(1).css('background-image', 'url(./img/p2.png').html(' ').end().eq(2).css('background-image', 'url(./img/p3.png').html(' ');
+    });
+  });
 
-  var list = [$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')]
-  list.forEach(el => el.hide())
-  $('.phb').show()
-  $('.main').hide()
-  $('.ppi-stand')
-    .eq(0)
-    .css('background-image', 'url(./img/p1.png')
-    .html(' ')
-    .end()
-    .eq(1)
-    .css('background-image', 'url(./img/p2.png')
-    .html(' ')
-    .end()
-    .eq(2)
-    .css('background-image', 'url(./img/p3.png')
-    .html(' ')
-})
-
-
-
-
-
+  var list = [$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')];
+  list.forEach(function (el) {
+    return el.hide();
+  });
+  $('.phb').show();
+  $('.main').hide();
+  $('.ppi-stand').eq(0).css('background-image', 'url(./img/p1.png').html(' ').end().eq(1).css('background-image', 'url(./img/p2.png').html(' ').end().eq(2).css('background-image', 'url(./img/p3.png').html(' ');
+});
