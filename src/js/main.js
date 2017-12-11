@@ -1,5 +1,6 @@
 'use strict';
 
+
 [$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')].forEach(function (el) {
   return el.hide();
 });
@@ -12,7 +13,7 @@ $('#qd').click(function (e) {
     url: '//qiandao.redrock.team/question',
     type: 'POST',
     data: {
-      openid: window.document.location.search.replace('?openid=', '').split('&')[0]
+      openid: window.document.location.search.match(/openid=([^&]+)&/)[1]
     },
     header: {    
       "Content-Type": "application/x-www-form-urlencoded"
@@ -45,7 +46,7 @@ $('.ans').click(function (e) {
     },
     data: {
       answer: e.target.id[3].toUpperCase(),
-      openid: window.document.location.search.replace('?openid=', '').split('&')[0]
+      openid: window.document.location.search.match(/openid=([^&]+)&/)[1]
     }
   }).done(function (data) {
     console.log(data);
@@ -82,7 +83,7 @@ $('#phb').click(function (e) {
     url: '//qiandao.redrock.team/rank',
     type: 'POST',
     data: {
-      openid: window.document.location.search.replace(/\?openid=/, '').split('&')[0]
+      openid: window.document.location.search.match(/openid=([^&]+)&/)[1]
     },
     header: {
       "Content-Type": "application/x-www-form-urlencoded"
