@@ -7,8 +7,6 @@
 
 $('#qd').click(function (e) {
   $('.main').hide();
-  console.log("123");
-  $('.ques').show();
   $.ajax({
     url: '//qiandao.redrock.team/question',
     type: 'POST',
@@ -19,6 +17,7 @@ $('#qd').click(function (e) {
       "Content-Type": "application/x-www-form-urlencoded"
     }
   }).done(function (data) {
+    $('.ques').show();
     console.log(data);
     if (data.status == 200) {
       $('.q-m').html(data.data.question);
@@ -93,7 +92,7 @@ $('#phb').click(function (e) {
     }
   }).done(function (data) {
     console.log(data);
-    $('.p-mc').html(data.data.userRank > 0 ? data.data.userRank : 1);
+    $('.p-mc').html(data.data.userRank > 0 ? data.data.userRank : '无');
     data.data.topTen.forEach(function (el, index) {
       $('.p-p').html($('.p-p').html() + '<div class="pp-im"><div class="ppi-ava"></div><div class="ppi-name"></div><div class="ppi-stand"></div></div>');
       $('.ppi-ava').eq(index).css('background-image', 'url(' + el.headImgAddr + ')');
