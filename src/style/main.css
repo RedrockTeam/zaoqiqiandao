@@ -192,7 +192,7 @@
 .phb {
   width: 90vw;
   height: 155vw;
-  position: fixed;
+  position: relative;
   z-index: 3;
   top: 5vw;
   left: 5vw;
