@@ -33,6 +33,9 @@ $('#qd').click(function (e) {
     else if (data.status == 301 || data.status == 302) {
       showNotTime();
     }
+    else if (data.status == 400 || data.status == 401 || data.status == 500) {
+      window.location.reload();
+    }
   });
 });
 
