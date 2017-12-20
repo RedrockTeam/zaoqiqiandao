@@ -21,7 +21,7 @@ $('#qd').click(function (e) {
     console.log(data);
     if (data.status == 200) {
       $('.q-m').html(data.data.question);
-      var ans = data.data.selection.split(/\ +/).map(function (el) {
+      var ans = data.data.selection.split(/\ +?(?=[ABCD]\.)/).map(function (el) {
         return el.split('.')[1];
       });
       $('#da-a').html(ans[0]);
