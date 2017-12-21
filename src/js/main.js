@@ -1,5 +1,6 @@
 'use strict';
 
+var _PORT = '//wx.yyeke.com/qiandao/';
 
 [$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')].forEach(function (el) {
   return el.hide();
@@ -8,7 +9,7 @@
 $('#qd').click(function (e) {
   $('.main').hide();
   $.ajax({
-    url: '//qiandao.redrock.team/question',
+    url: window._PORT + 'question',
     type: 'POST',
     data: {
       openid: window.document.location.search.match(/openid=([^&]+)/)[1]
@@ -41,7 +42,7 @@ $('#qd').click(function (e) {
 $('.ans').click(function (e) {
   console.log(e);
   $.ajax({
-    url: '//qiandao.redrock.team/sign',
+    url: window._PORT + 'sign',
     type: 'POST',
     heade : {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -82,7 +83,7 @@ $('#zjzl').click(function (e) {
 // 排行榜
 $('#phb').click(function (e) {
   $.ajax({
-    url: '//qiandao.redrock.team/rank',
+    url: window._PORT + 'rank',
     type: 'POST',
     data: {
       openid: window.document.location.search.match(/openid=([^&]+)/)[1]
