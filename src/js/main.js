@@ -2,6 +2,9 @@
 
 var _PORT = '//wx.yyeke.com/qiandao/';
 
+// 事件防重机制
+var _ONE = false;
+
 [$('.cover'), $('.ashow'), $('.bshow'), $('.phb'), $('.ques')].forEach(function (el) {
   return el.hide();
 });
@@ -40,30 +43,34 @@ $('#qd').click(function (e) {
 });
 
 $('.ans').click(function (e) {
-  console.log(e);
-  $.ajax({
-    url: window._PORT + 'sign',
-    type: 'POST',
-    heade : {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    data: {
-      answer: e.target.id[3].toUpperCase(),
-      openid: window.document.location.search.match(/openid=([^&]+)/)[1]
-    }
-  }).done(function (data) {
-    console.log(data);
-    // 答案错误
-    if (data.status == 401) {
-      $('.cover').show();
-      $('#hdcw').show();
-    }
-    // 签到成功
-    if (data.status == 200 || data.status == 201) {
-      $('.cover').show();
-      $('#phb').click();
-    }
-  });
+  if (window._ONE == false) {
+    window._ONE = true
+    console.log(e);
+    $.ajax({
+      url: window._PORT + 'sign',
+      type: 'POST',
+      heade : {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        answer: e.target.id[3].toUpperCase(),
+        openid: window.document.location.search.match(/openid=([^&]+)/)[1]
+      }
+    }).done(function (data) {
+      window._ONE = false
+      console.log(data);
+      // 答案错误
+      if (data.status == 401) {
+        $('.cover').show();
+        $('#hdcw').show();
+      }
+      // 签到成功
+      if (data.status == 200 || data.status == 201) {
+        $('.cover').show();
+        $('#phb').click();
+      }
+    });
+  }
 });
 
 // 退出

@@ -112,10 +112,10 @@
 }
 .bshow {
   position: fixed;
-  top: 60vw;
+  top: 50vw;
   left: 5vw;
   width: 90vw;
-  height: 70vw;
+  height: 69vw;
   box-sizing: border-box;
   padding-top: 50vw;
   z-index: 5;
@@ -210,6 +210,7 @@
   padding-right: 24vw;
   color: #fda25a;
   text-shadow: -1px 1px #f00;
+  line-height: 8vw;
 }
 .phb .p-p {
   transform: translate(0, 17vw);
